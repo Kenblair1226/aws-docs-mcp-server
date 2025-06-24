@@ -1,0 +1,11 @@
+name = "aws-docs-mcp-worker"
+main = "src/index.ts"
+compatibility_date = "2024-12-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+AWS_DOCUMENTATION_PARTITION = "aws"
+FASTMCP_LOG_LEVEL = "ERROR"
+
+[[routes]]
+pattern = "*/mcp/*"

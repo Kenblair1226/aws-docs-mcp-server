@@ -1,0 +1,22 @@
+{
+  "name": "aws-docs-mcp-worker",
+  "version": "1.0.0",
+  "description": "AWS Documentation MCP Server for Cloudflare Workers",
+  "main": "src/index.ts",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "build": "tsc",
+    "type-check": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@cloudflare/workers-types": "^4.20241127.0",
+    "hono": "^4.6.11",
+    "turndown": "^7.2.0",
+    "node-html-parser": "^6.1.13"
+  },
+  "devDependencies": {
+    "typescript": "^5.7.2",
+    "wrangler": "^3.84.0"
+  }
+}
