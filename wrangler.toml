@@ -7,5 +7,6 @@ compatibility_flags = ["nodejs_compat"]
 AWS_DOCUMENTATION_PARTITION = "aws"
 FASTMCP_LOG_LEVEL = "ERROR"
 
-[[routes]]
-pattern = "*/mcp/*"
+# Remove routes configuration - use custom domain or specify zone_id/zone_name if needed
+# [[routes]]
+# pattern = "*/mcp/*"

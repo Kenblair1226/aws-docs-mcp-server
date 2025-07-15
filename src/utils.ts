@@ -138,7 +138,7 @@ export function parseRecommendationResults(data: any): RecommendationResult[] {
   // Process highly rated recommendations
   if (data.highlyRated?.items) {
     for (const item of data.highlyRated.items) {
-      const context = item.abstract || null;
+      const context = item.abstract || undefined;
       results.push({
         url: item.url || '',
         title: item.assetTitle || '',
@@ -153,7 +153,7 @@ export function parseRecommendationResults(data: any): RecommendationResult[] {
       const intent = intentGroup.intent || '';
       if (intentGroup.urls) {
         for (const urlItem of intentGroup.urls) {
-          const context = intent ? `Intent: ${intent}` : null;
+          const context = intent ? `Intent: ${intent}` : undefined;
           results.push({
             url: urlItem.url || '',
             title: urlItem.assetTitle || '', 

@@ -1,7 +1,19 @@
 {
   "permissions": {
     "allow": [
-      "Bash(npm install)"
+      "Bash(npm install)",
+      "Bash(npm install:*)",
+      "Bash(wrangler dev:*)",
+      "Bash(npx wrangler:*)",
+      "Bash(curl:*)",
+      "Bash(pkill:*)",
+      "Bash(npm run build:*)",
+      "Bash(npm run dev:*)",
+      "Bash(find:*)",
+      "Bash(ls:*)",
+      "Bash(npm ls:*)",
+      "WebFetch(domain:aws-docs-mcp-worker.tkgv9f78qm.workers.dev)",
+      "Bash(npm run type-check:*)"
     ],
     "deny": []
   }

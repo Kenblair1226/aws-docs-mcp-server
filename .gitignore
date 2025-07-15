@@ -5,3 +5,8 @@ dist/
 .env
 .env.local
 .DS_Store
+
+# TypeScript compilation outputs
+src/*.js
+src/*.d.ts
+src/*.d.ts.map

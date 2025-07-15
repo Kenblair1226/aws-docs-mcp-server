@@ -153,7 +153,7 @@ export async function searchDocumentation(
       throw new Error(`Error searching AWS docs - status code ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as any;
     const results: SearchResult[] = [];
 
     if (data.suggestions) {
@@ -161,7 +161,7 @@ export async function searchDocumentation(
         const suggestion = data.suggestions[i];
         if (suggestion.textExcerptSuggestion) {
           const textSuggestion = suggestion.textExcerptSuggestion;
-          let context = null;
+          let context: string | undefined = undefined;
 
           if (textSuggestion.summary) {
             context = textSuggestion.summary;
@@ -199,7 +199,7 @@ export async function recommend(url: string, sessionId: string): Promise<Recomme
       throw new Error(`Error getting recommendations - status code ${response.status}`);
     }
 
-    const data = await response.json();
+    const data = await response.json() as any;
     return parseRecommendationResults(data);
   } catch (error) {
     throw new Error(`Error getting recommendations: ${error}`);

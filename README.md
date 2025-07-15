@@ -4,7 +4,8 @@ This is a port of the AWS Documentation MCP Server to run on Cloudflare Workers 
 
 ## Features
 
-- **HTTP-based MCP Protocol**: REST API endpoints instead of stdio transport
+- **Standard MCP Protocol**: Full JSON-RPC 2.0 implementation with proper MCP compliance
+- **HTTP-based MCP Transport**: REST API endpoints with MCP protocol support
 - **Server-Sent Events (SSE)**: Streaming responses for real-time updates
 - **Cloudflare Workers**: Edge computing for low latency globally
 - **TypeScript**: Type-safe implementation with modern JavaScript features
@@ -19,11 +20,12 @@ This is a port of the AWS Documentation MCP Server to run on Cloudflare Workers 
 
 ### MCP Protocol Endpoints
 
-- `GET /mcp/info` - Server information and capabilities
+- `POST /mcp` - Standard MCP JSON-RPC endpoint (recommended)
+- `GET /mcp/info` - Server information and capabilities  
 - `GET /mcp/tools/list` - List available tools
 - `POST /mcp/tools/call` - Execute tools (JSON request/response)
-- `GET /mcp/stream` - SSE connection for streaming
-- `POST /mcp/tools/stream` - Execute tools with streaming response
+- `GET /sse/connect` - SSE connection for streaming
+- `POST /sse/tools/call` - Execute tools with streaming response
 
 ### Utility Endpoints
 
@@ -49,7 +51,30 @@ This is a port of the AWS Documentation MCP Server to run on Cloudflare Workers 
 
 ## Usage Examples
 
-### Using curl
+### Using Standard MCP Protocol
+
+**Initialize MCP session:**
+```bash
+curl -X POST https://your-worker.your-subdomain.workers.dev/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "id": 1, "method": "initialize", "params": {}}'
+```
+
+**List available tools:**
+```bash
+curl -X POST https://your-worker.your-subdomain.workers.dev/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "id": 2, "method": "tools/list", "params": {}}'
+```
+
+**Execute a tool:**
+```bash
+curl -X POST https://your-worker.your-subdomain.workers.dev/mcp \
+  -H "Content-Type: application/json" \
+  -d '{"jsonrpc": "2.0", "id": 3, "method": "tools/call", "params": {"name": "read_documentation", "arguments": {"url": "https://docs.aws.amazon.com/AmazonS3/latest/userguide/bucketnamingrules.html"}}}'
+```
+
+### Using Legacy HTTP Endpoints
 
 **List available tools:**
 ```bash
